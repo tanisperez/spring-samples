@@ -6,23 +6,20 @@
   <parent>
     <groupId>com.tanis.spring.samples</groupId>
     <artifactId>spring-samples</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2</version>
   </parent>
   
   <artifactId>spring-beans</artifactId>
   <name>spring-beans</name>
   <url>http://maven.apache.org</url>
   
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  
   <dependencies>
   
+  	<!-- JUnit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     
@@ -31,21 +28,11 @@
   <build>
 		<plugins>
 		
-			<!--  Maven Compiler Plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			
 			<!-- Maven Jar Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin.version}</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -56,5 +43,6 @@
 			</plugin>
 			
 		</plugins>
-	</build>
+  </build>
+	
 </project>

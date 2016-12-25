@@ -4,14 +4,36 @@
 
   <groupId>com.tanis.spring.samples</groupId>
   <artifactId>spring-samples</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2</version>
   <packaging>pom</packaging>
 
   <name>spring-samples</name>
 
   <properties>
+    <!-- Project Settings -->
+    <jdk.version>1.8</jdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+    
+	<!--  Dependency versions -->    
+    <junit.version>3.8.1</junit.version>
   </properties>
+  
+  <build>
+  	<plugins>
+  		<!--  Maven Compiler Plugin -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>${maven-compiler-plugin.version}</version>
+			<configuration>
+				<source>${jdk.version}</source>
+				<target>${jdk.version}</target>
+			</configuration>
+		</plugin>
+  	</plugins>
+  </build>
   
   <modules>
   	<module>spring-beans</module>
