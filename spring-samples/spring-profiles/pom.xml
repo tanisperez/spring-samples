@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>com.tanis.spring.samples</groupId>
+    <artifactId>spring-samples</artifactId>
+    <version>0.0.2</version>
+  </parent>
+  
+  <artifactId>spring-profiles</artifactId>
+  <name>${project.groupId}:${project.artifactId}</name>
+  <packaging>jar</packaging>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Compiler -->
+  	<jdk.version>1.8</jdk.version>
+    <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+  
+  	<!-- Main Class -->
+  	<project-main.class>com.tanis.spring.Start</project-main.class>
+  
+  	<!-- Dependencies -->
+  	<spring-beans.version>4.3.5.RELEASE</spring-beans.version>
+  	<spring-context.version>4.3.5.RELEASE</spring-context.version>
+  </properties>
+  
+  <dependencies>
+  	
+  		<!-- Spring Beans -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-beans</artifactId>
+		</dependency>
+		
+		<!-- Spring Context -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		</dependency>
+  		
+  </dependencies>
+  
+  
+  <profiles>
+  
+  	<!-- Dev Profile -->
+  	<profile>
+      <id>dev</id>
+      <activation>
+            <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+	      <db.config>dev/db.properties</db.config>
+	      <mail.config>dev/mail.properties</mail.config>
+      </properties>
+    </profile>
+    
+    <!-- Pro Profile -->
+    <profile>
+    	<id>pro</id>
+    	<properties>
+	      <db.config>pro/db.properties</db.config>
+	      <mail.config>pro/mail.properties</mail.config>
+      </properties>
+    </profile>
+  
+  </profiles>
+  
+  <build>
+  	<resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
+  
+  	<plugins>
+  	
+  		<!--  Maven Compiler Plugin -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>${maven-compiler-plugin.version}</version>
+			<configuration>
+				<source>${jdk.version}</source>
+				<target>${jdk.version}</target>
+			</configuration>
+		</plugin>
+		
+		<!-- Maven Jar Plugin -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<version>${maven-jar-plugin.version}</version>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>${project-main.class}</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin>
+		
+		<!-- Assembly With Dependencies -->
+		<plugin>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>${project-main.class}</mainClass>
+					</manifest>
+				</archive>
+				<descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
+			</configuration>
+			<executions>
+				<execution>
+					<id>make-assembly</id>
+					<phase>package</phase>
+					<goals>
+						<goal>single</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		
+  	</plugins>
+  	
+  </build>
+  
+</project>
